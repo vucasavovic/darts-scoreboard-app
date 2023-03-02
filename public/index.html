@@ -9,79 +9,67 @@
 </head>
 <body>
     <main>
-        <header>
-          Vid
-        </header>
-        <section class="top">
-            
-            <div id="#app" class="app">
-                <section class="score-board">
-                     <div data-panel="">
-                        <div class="scores">
-                            <div class="col player">
-                                <span class="title">Pl. 1</span>
-                                <span><img src="/images/strike-2.svg" alt=""></span>
-                                <span> </span>
-                                <span> </span>
-                                <span> </span>
-                                <span> </span>
-                                <span> </span>
-                                <span> </span>
-                                <span> </span>
-                            </div>
-    
-                            <div class="col main">
-                                <span class="title">cricket</span>
-                                <span class="closed">20</span>
-                                <span>19</span>
-                                <span>18</span>
-                                <span>17</span>
-                                <span>16</span>
-                                <span>15</span>
-                                <span class="title">bull</span>
-                                <span class="title">pts.</span>
-                            </div>
-    
-                            <div class="col player">
-                                <span class="title">Pl. 2</span>
-                                <span></span>
-                                <span><img src="/images/strike-4.svg" alt=""></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                     </div>
-                    
-                    <form data-panel="active" class="menu">
-                        <h2>Match settings</h2>
-                        <div class="player-list">
-                           <p>Player 1</p>
-                           <p>Player 2</p>
-                        </div>
-                        <div class="new-player">
-                            <input placeholder="Player" type="text">
-                            <button data-btn="addPlayer" type="button">Add +</button>
-                        </div>
-                        <button type="button">Start</button>
-                    </form>
-                    <form data-panel class="menu">
-                        <button data-btn="restartMatch" type="button">Restart</button>
-                        <button data-btn="entMatch" type="button">End</button>
-                    </form>
-                </section>
-    
-                <section class="dartboard">
-                    <img src="./images/dart-board.svg" alt="dart board">
-                </section>
-            </div>
-    
-        </section>
-    </main>
 
+        <div class="header">
+            <img src="./images/videobolt-logo.svg" alt="Videobolt logo">
+        </div>
+
+
+        <section class="top">
+
+            <div class="app">
+                <div class="panel lobby"></div>
+                <div class="panel score-board active">
+
+                    <div class="score-rows">
+                        <div class="score-row active">
+                            <span class="row-header">Nina</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="score-row main">
+                            <span class="row-header"><img src="./images/cricket-logo.svg" alt="Game logo"></span>
+                            <span>20</span>
+                            <span>19</span>
+                            <span>18</span>
+                            <span>17</span>
+                            <span>16</span>
+                            <span>15</span>
+                            <span><img src="./images/bull.svg" alt="Bullseye"></span>
+                            <span>Pts</span>
+                        </div>
+                        <div class="score-row">
+                            <span class="row-header">Nina</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="buttons">
+                        <button>Next player</button>
+                        <button>Undo</button>
+                        <button>Menu</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+ 
+    </main>
     <script src="./bundle.js"></script>
 </body>
 </html>
