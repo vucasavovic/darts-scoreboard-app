@@ -47,6 +47,7 @@ img, span {
 }
 
 button {
+  display: block;
   cursor: pointer;
   padding: 0.625rem 3rem;
   background-color: #00D2DC;
@@ -57,19 +58,38 @@ button {
   white-space: nowrap;
 }
 
+.icon-button {
+  cursor: pointer;
+}
+
+input {
+  font-size: 1rem;
+}
+input:focus {
+  outline: none;
+}
+
 .panel {
   background-color: white;
   display: none;
   width: 100%;
   min-height: 600px;
+  flex-direction: column;
+  padding: 2rem;
 }
 .panel.active {
   display: flex;
 }
+.panel-title {
+  width: 100%;
+  display: flex;
+  font-size: 1.2rem;
+  text-align: center;
+  justify-content: space-between;
+}
 
 .panel.score-board {
-  display: flex;
-  flex-direction: column;
+  padding: 0;
 }
 .panel.score-board > .buttons {
   margin-top: auto;
@@ -119,4 +139,44 @@ button {
 }
 .score-row.active > * {
   background-color: rgba(0, 210, 220, 0.1);
+  cursor: pointer;
+}
+
+.panel.lobby {
+  padding: 2rem;
+  justify-content: stretch;
+}
+.panel.lobby > .participants {
+  margin-top: 2rem;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.panel.lobby > .participants > li {
+  padding: 0.8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(33, 33, 33);
+}
+.panel.lobby > .participants > :last-child {
+  display: flex;
+  border-bottom: none;
+}
+.panel.lobby > button {
+  align-self: flex-end;
+}
+
+.panel.pause-menu {
+  align-items: center;
+}
+.panel.pause-menu > .options {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=main.css.map */

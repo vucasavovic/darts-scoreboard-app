@@ -18,22 +18,35 @@
         <section class="top">
 
             <div class="app">
-                <div class="panel lobby"></div>
-                <div class="panel score-board active">
+                <section data-ui-panel="lobby" class="panel lobby  active">
+                    <div class="panel-title">
+                        <img src="./images/cricket-logo.svg" alt="">
+                        <p>Lobby</p>
+                    </div>
+                    
+                    <ul class="participants">
+                        <li><p>Players</p><p>1/4</p></li> 
+                        <li data-participant><p>John Doe</p><img src="/images/x.svg" alt="Close button"></li> 
+                        <li><input type="text" placeholder="player name"><button data-btn="addParticipant">Add player</button></li> 
+                    </ul>
+                     <button  data-btn="startMatch">Start</button> 
+                </section>
 
-                    <div class="score-rows">
-                        <div class="score-row active">
-                            <span class="row-header">Nina</span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                <section data-ui-panel="score-board" class="panel score-board">
+
+                    <div data-ui-scores class="score-rows">
+                        <div data-ui-score-participant-column  class="score-row ">
+                            <span class="row-header">John Doe</span>
+                            <span pt-val="20"><img src="./images/strike-1.svg" alt=""></span>
+                            <span pt-val="19"></span>
+                            <span pt-val="18"><img src="./images/strike-3.svg" alt=""></span>
+                            <span pt-val="17"></span>
+                            <span pt-val="16"></span>
+                            <span pt-val="15"></span>
+                            <span pt-val="bull"></span>
+                            <span ></span>
                         </div>
-                        <div class="score-row main">
+                        <div data-ui-score-column="main" class="score-row main">
                             <span class="row-header"><img src="./images/cricket-logo.svg" alt="Game logo"></span>
                             <span>20</span>
                             <span>19</span>
@@ -44,26 +57,30 @@
                             <span><img src="./images/bull.svg" alt="Bullseye"></span>
                             <span>Pts</span>
                         </div>
-                        <div class="score-row">
-                            <span class="row-header">Nina</span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+                        
+                    </div>
+ 
+                    <div class="buttons">
+                        <button data-btn="nextPlayer">Next player</button>
+                        <!-- <button>Undo</button> -->
+                        <button data-btn="pause-menu">Menu</button>
+                    </div>
+                </section>
+
+                <section data-ui-panel="pause-menu" class="panel pause-menu ">
+                    <div class="panel-title">
+                        <img src="./images/cricket-logo.svg" alt="">
+                        <img data-btn="closePauseMenu" class="icon-button" src="/images/x.svg" alt="Close button">
                     </div>
                     
-
-                    <div class="buttons">
-                        <button>Next player</button>
-                        <button>Undo</button>
-                        <button>Menu</button>
+                    <div class="options">
+                        <!-- <button data-btn="restartGame"  data-btn="startMatch">Restart</button>  -->
+                        <button data-btn="quitGame"  data-btn="startMatch">Quit</button> 
                     </div>
-                </div>
+                    
+                     
+                </section>
+
             </div>
 
         </section>
