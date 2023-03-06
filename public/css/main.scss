@@ -3,7 +3,8 @@
 
 $lightgray:#edebeb;
 $aqua:#00D2DC;
-
+$border:1px solid rgba($color: black, $alpha: .2);
+ 
 *{
     margin:0;
     padding:0;
@@ -13,13 +14,46 @@ $aqua:#00D2DC;
     text-decoration:none;
 }
 
-
+ul,li{
+    list-style: none;
+}
+input,a,button,.button{
+    cursor: pointer;
+}
+input{
+    width: 100%;
+}
+a{
+    color: black;
+}
 body{
     font-family:Inter, sans-serif;
 }
 
 img,span{
     display: block;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+@mixin flex-justify($justify,$gap){
+    display: flex;
+    justify-content: $justify;
+    gap: $gap;
+}
+@mixin flex ($direction,$justify,$align,$gap){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+@mixin breakpoint-down($width){
+    @media only screen and (max-width:632px) {
+        @content;
+    }
 }
 
 .header{
@@ -33,6 +67,7 @@ img,span{
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem 3rem;
 }
  
@@ -42,31 +77,60 @@ img,span{
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:center;
+
+    padding-top: 70px;
+
+    @include breakpoint-down(640px){
+        align-items: stretch;
+    }
+ 
 }
 
 .app{
-     
-    max-width: 560px;
-    width: 100%;
- 
-    border-radius: 16px;
+    max-width: 1400px;
+    width: fit-content;
     overflow: hidden;
- 
+    display: flex;
+    min-height: 600px;
+
+    @include breakpoint-down(640px){
+        min-height: none;
+        max-width: 100%;
+        width: 100%;
+    }
 } 
 
-button{
-    display: block;
-    cursor: pointer;
-    padding: 0.625rem 3rem  ;
+button,.button{
+    display: flex;
+    padding: 0.625rem 2rem  ;
     background-color: $aqua;
     text-align: center;
     width: fit-content;
-    border-radius: 8px;
+    border-radius: 4px;
     white-space: nowrap;
+    transition: all .3 ease-in-out;
+    gap: 0.625rem;
+    width: fit-content;
+    font-weight: 600;
+    font-size: 1rem;
+    &:hover{
+        background-color: rgba($color: $aqua, $alpha: 0.7);
+    }
+    > img{
+        width :  20px;
+    }
+}
+.buttons{
+    display: flex;
+    gap:1rem;
 }
 .icon-button{
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover{
+        opacity: 0.8;
+    }
 }
 
 input{
@@ -80,9 +144,10 @@ input{
     background-color: white;
     display: none;
     width: 100%;
-    min-height: 600px;
     flex-direction: column;
     padding: 2rem;
+    min-width: 600px;
+    
     &.active{
         display: flex;
     }
@@ -93,40 +158,85 @@ input{
         text-align: center;
         justify-content: space-between;
     }
+
+    @include breakpoint-down(800px){
+        min-width: 0;
+        flex: 1;
+        width: 100%;
+        max-height: 100%;
+    }
 }
 
-.panel.score-board{
-     padding: 0;
-    >.buttons{
-        margin-top: auto;
-        padding: 2rem;
-        width: 100%;
-        
-        display: flex;
-        gap: 1rem;
+.score-board{
+    padding: 0;
+    flex-direction: row;
+    flex: 1;  
+    @include breakpoint-down(730px){
+        flex-direction: column;
+    }
+}
+
+.info{
+    padding: 2rem;
+    display: flex;
+    max-width: 320px;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include breakpoint-down(730px){
+        max-width: 100%;
+    }
+  
+    >.info-list{
+        list-style: none;
         >*{
+            @include flex(row,space-between,flex-start,0);
+            border-bottom: $border;
+            padding : 0.5rem 0;
+        }
+    }
+    >.instructions{
+        @include flex(column,flex-start,flex-start,1rem);
+        >.title{
+            font-size:1rem;
+            padding:0.3rem;
             flex: 1;
         }
     }
+
+    
 }
 
 .score-rows{
     flex: 1;
     display: flex;
     align-items: stretch;
+    border-left: $border;
+    
     >:nth-child(n+2){
-        border-left: 1px solid black;
+        border-left:$border;
     }
 }
-
+.dart-board{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    >img{
+        max-width: 520px;
+    }
+}
 .score-row{
     flex: 1;
     text-align: center;
     display: flex;
     flex-direction: column;
-    &.main{
-        font-weight: 700;
+    min-width: 80px;
+
+    @include breakpoint-down(640px){
+        min-width: 46px;
     }
+    
     >.row-header{
         background-color: #eaeaea;
     }
@@ -135,9 +245,13 @@ input{
         padding: 0.6rem;
         flex: 1;
         display: flex;
-        align-items: center;
         justify-content: center;
-        border-bottom: 1px solid black;
+        align-items: center;
+        border-bottom: $border;
+        height: 46px;
+    }
+    >:last-child{
+        border-bottom: 0;
     }
 
     & img{
@@ -151,9 +265,61 @@ input{
         }
         >*{
             background-color: rgba($color: $aqua, $alpha: .1);
-            cursor: pointer;
         }
     }
+   
+}
+
+.multiplier{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba($color: #000000, $alpha: .2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    
+    &.active{
+        display: flex;
+    }
+    >:first-child{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        max-width: 500px;
+        >*{
+            cursor: pointer;
+            width: 33.3333%;
+        }
+    }
+    
+}
+
+.score-row.main{
+    position: relative;
+    font-weight: 700;
+    >*{
+        cursor: pointer;
+        padding: 0.6rem;
+ 
+        &.closed{
+            background-color: #000000;
+            color: white;
+            &:hover{
+              background-color: rgb(74, 74, 74);
+            }
+        }
+        &[pt-val]:hover{
+            background-color: $aqua;
+        } 
+        >img{
+            pointer-events: none;
+        }
+        
+    }
+  
 }
  
 
@@ -173,7 +339,7 @@ input{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom:1px solid rgb(33, 33, 33);
+            border-bottom:1px solid #212121;
         }
 
         >:last-child{
@@ -202,4 +368,27 @@ input{
          
     }
 }
+ 
+.player{
+    border: $border;
+    padding:1rem 2rem;
+    border-radius: 8px;
+    #activePlayer{
+        font-weight: 600;
+        font-size: 1.4rem  
+    }
+    @include flex-justify(space-between,0);
+    >.player-hand{
+        @include flex-justify(flex-end,0.4rem );
+        >img{
+            display: none;
+            width: 22px;
+            &.active{
+                display: block;
+            }
+        }
+    }
+}
+
+ 
 

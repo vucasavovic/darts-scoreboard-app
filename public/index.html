@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darts Scoreboard</title>
+    <title>Darts Score Tracker</title>
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -12,6 +12,16 @@
 
         <div class="header">
             <img src="./images/videobolt-logo.svg" alt="Videobolt logo">
+            <nav>
+                <a href=""></a>
+                <a href=""></a>
+                <a href=""></a>
+                <a href=""></a>
+            </nav>
+            <div class="buttons">
+                <a href="https://videobolt.net/sign-up" class="button"> <img src="./images/avatar-plus.svg" alt="Door enter icon"> Try for free</a>
+            </div>
+             
         </div>
 
 
@@ -23,48 +33,76 @@
                         <img src="./images/cricket-logo.svg" alt="">
                         <p>Lobby</p>
                     </div>
-                    
-                    <ul class="participants">
-                        <li><p>Players</p><p>1/4</p></li> 
-                        <li data-participant><p>John Doe</p><img src="/images/x.svg" alt="Close button"></li> 
-                        <li><input type="text" placeholder="player name"><button data-btn="addParticipant">Add player</button></li> 
+ 
+                    <ul data-participants class="participants">
+                        <li><p>Players</p><p>max 4</p></li> 
+                        <li data-participant><p>John Doe</p><img class="icon-button"  data-btn="removeParticipant" src="/images/x.svg" alt="Remove player icon"></li> 
+                        <li><input type="text" maxlength="6" placeholder="player name"><button data-btn="addParticipant">Add player</button></li> 
                     </ul>
                      <button  data-btn="startMatch">Start</button> 
                 </section>
 
                 <section data-ui-panel="score-board" class="panel score-board">
-
-                    <div data-ui-scores class="score-rows">
-                        <div data-ui-score-participant-column  class="score-row ">
-                            <span class="row-header">John Doe</span>
-                            <span pt-val="20"><img src="./images/strike-1.svg" alt=""></span>
-                            <span pt-val="19"></span>
-                            <span pt-val="18"><img src="./images/strike-3.svg" alt=""></span>
-                            <span pt-val="17"></span>
-                            <span pt-val="16"></span>
-                            <span pt-val="15"></span>
-                            <span pt-val="bull"></span>
-                            <span ></span>
-                        </div>
-                        <div data-ui-score-column="main" class="score-row main">
-                            <span class="row-header"><img src="./images/cricket-logo.svg" alt="Game logo"></span>
-                            <span>20</span>
-                            <span>19</span>
-                            <span>18</span>
-                            <span>17</span>
-                            <span>16</span>
-                            <span>15</span>
-                            <span><img src="./images/bull.svg" alt="Bullseye"></span>
-                            <span>Pts</span>
+                   
+                    <div class="info">
+                        <div class="panel-title">
+                            <img src="./images/cricket-logo.svg" alt="Game logo">
+                            <img class="icon-button" src="./images/menu.svg" data-btn="pause-menu"> 
                         </div>
                         
+                        <div class="player"> 
+                            <p id="activePlayer" class="capitalize"></p> 
+                            <div data-player-throws class="player-hand" >
+                                <img class="" src="./images/dart.svg" alt="">
+                                <img class="" src="./images/dart.svg" alt="">
+                                <img class="" src="./images/dart.svg" alt="">
+                            </div>
+                        </div>
+                        <button data-btn="nextPlayer" class="capitalize">Next Player</button>
+                        <div class="instructions">
+                            <h3 class="title">Instructions & rules</h3>
+                            <p>Select a Player on Select button. Click on a number in Nums column to assign a stike to the selected player!</p>
+                        </div>
+                        <button data-btn="missed" class="capitalize">Missed</button>
+
                     </div>
+                   
+                   
+                    <div data-ui-scores class="score-rows">
+                        <div data-ui-score-participant-column  class="score-row ">
+                            <span class="row-header capitalize">John Doe</span>
+                            <span pt-val="20" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="19" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="18" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="17" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="16" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="15" ><img src="./images/strike-0.svg"  alt="point strike icon"></span>
+                            <span pt-val="bull"><img src="./images/strike-0.svg" alt="point strike icon"></span>
+                            <span data-player-pts > 0 </span>
+                        </div>
+                        <div data-ui-score-column="main" class="score-row main">
+                            <span class="row-header">Nums</span>
+                            <div pt-val="20">20</div>
+                            <span pt-val="19">19</span>
+                            <span pt-val="18">18</span>
+                            <span pt-val="17">17</span>
+                            <span pt-val="16">16</span>
+                            <span pt-val="15">15</span>
+                            <span pt-val="bull"><img src="./images/bull.svg" alt="Bullseye"></span>
+                            <span class="row-header">Pts</span>
+                            
+                        </div>
  
-                    <div class="buttons">
-                        <button data-btn="nextPlayer">Next player</button>
-                        <!-- <button>Undo</button> -->
-                        <button data-btn="pause-menu">Menu</button>
                     </div>
+     
+                    <div id="multiplier" class="multiplier ">
+                        <div>
+                            <img data-btn="1" class="icon-button" src="./images/times-1.svg" alt="Multiply by 1">
+                            <img data-btn="2" class="icon-button" src="./images/times-2.svg" alt="Multiply by 2">
+                            <img data-btn="3" class="icon-button" src="./images/times-3.svg" alt="Multiply by 2">
+                        </div>
+                    </div>
+
                 </section>
 
                 <section data-ui-panel="pause-menu" class="panel pause-menu ">
@@ -75,7 +113,7 @@
                     
                     <div class="options">
                         <!-- <button data-btn="restartGame"  data-btn="startMatch">Restart</button>  -->
-                        <button data-btn="quitGame"  data-btn="startMatch">Quit</button> 
+                        <button data-btn="quitGame">Quit</button> 
                     </div>
                     
                      
@@ -84,8 +122,8 @@
             </div>
 
         </section>
-        
  
+        
     </main>
     <script src="./bundle.js"></script>
 </body>

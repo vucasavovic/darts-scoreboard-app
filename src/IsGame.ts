@@ -7,10 +7,11 @@ export default interface IsGame {
     players:Array<Player>;
     playerNumOk:any
     currentPlayerIndex:number;
+    currentPlayer:Player | null;
     startGame():void;
     quit():void;
     addPlayer(name:string):void;
-    currentPlayerAddPoints(p:string,a:number):void;
+ 
     nextPlayer():string;
 }
 
